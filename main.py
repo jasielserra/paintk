@@ -14,7 +14,8 @@ class Paintk:
         self.img_square = PhotoImage(file="icons/icons/square.png")
         self.img_new = PhotoImage(file="icons/icons/new.png")
 
-        self.colors = ("black","#3b3b3b","gray","white","red","green","blue", "purple","orange", "cyan", "cyan2","cyan3")
+        self.colors = ("black","#3b3b3b","gray","white","red","green","blue", "purple","orange", "cyan", "yellow","cyan3")
+        self.pick_colors = "black"
 
         self.bar_menu = Frame(self.window, bg='#3b3b3b', height=50)
         self.bar_menu.pack(fill="x")
@@ -23,12 +24,11 @@ class Paintk:
         self.text_color.pack(side="left")
 
         for color in self.colors:
-            self.button_color = Button(self.bar_menu, bg=color, width=3, height=2, command=None).pack(side="left")
+            self.button_color = Button(self.bar_menu, bg=color, width=3, height=2, command=lambda col=color:self.select_colors(col)).pack(side="left")
 
         self.text_pen_size = Label(self.bar_menu, text="  Size:  ", fg="white", bg="#3b3b3b").pack(side="left")
 
         self.pen_size = Spinbox(self.bar_menu, from_=1, to=50).pack(side="left")
-
 
         self.text_brushs = Label(self.bar_menu, text="  Brushs: ", fg="white", bg="#3b3b3b").pack(side="left")
 
@@ -51,6 +51,9 @@ class Paintk:
         x1, y1 = (event.x), (event.y)
         x2, y2 = (event.x), (event.y)
 
-        self.area_draw.create_oval(x1, y1, x2, y2, fill="black", width=20)
+        self.area_draw.create_oval(x1, y1, x2, y2, fill=self.pick_colors, outline=self.pick_colors, width=20)
+
+    def select_colors(self, col):
+        self.pick_colors = col
 
 Paintk()
