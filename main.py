@@ -43,7 +43,14 @@ class Paintk:
 
         self.area_draw = Canvas(self.window, height=720)
         self.area_draw.pack(fill="both")
+        self.area_draw.bind("<B1-Motion>", self.draw)
 
         self.window.mainloop()
+
+    def draw(self, event):
+        x1, y1 = (event.x), (event.y)
+        x2, y2 = (event.x), (event.y)
+
+        self.area_draw.create_oval(x1, y1, x2, y2, fill="black", width=20)
 
 Paintk()
