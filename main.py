@@ -14,7 +14,7 @@ class Paintk:
         self.img_square = PhotoImage(file="icons/icons/square.png")
         self.img_new = PhotoImage(file="icons/icons/new.png")
 
-        self.colors = ("black","#3b3b3b","gray","white","red","green","blue", "purple","orange")
+        self.colors = ("black","#3b3b3b","gray","white","red","green","blue", "purple","orange", "cyan", "cyan2","cyan3")
 
         self.bar_menu = Frame(self.window, bg='#3b3b3b', height=50)
         self.bar_menu.pack(fill="x")
@@ -35,6 +35,11 @@ class Paintk:
         self.button_line = Button(self.bar_menu, image=self.img_line, bd=0).pack(side="left")
         self.button_oval = Button(self.bar_menu, image=self.img_oval, bd=0).pack(side="left")
         self.button_eraser = Button(self.bar_menu, image=self.img_eraser, bd=0).pack(side="left")
+
+        self.text_options = Label(self.bar_menu, text="  Options:  ", fg="white", bg="#3b3b3b").pack(side="left")
+
+        self.button_save = Button(self.bar_menu, image=self.img_save, bd=0).pack(side="left")
+        self.button_new = Button(self.bar_menu, image=self.img_new, bd=0).pack(side="left")
 
         self.area_draw = Canvas(self.window, height=720)
         self.area_draw.pack(fill="both")
