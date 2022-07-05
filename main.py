@@ -25,6 +25,10 @@ class Paintk:
         for color in self.colors:
             self.button_color = Button(self.bar_menu, bg=color, width=3, height=2, command=None).pack(side="left")
 
+        self.text_pen_size = Label(self.bar_menu, text="  Size:  ", fg="white", bg="#3b3b3b").pack(side="left")
+
+        self.pen_size = Spinbox(self.bar_menu, from_=1, to=50).pack(side="left")
+
 
         self.text_brushs = Label(self.bar_menu, text="  Brushs: ", fg="white", bg="#3b3b3b").pack(side="left")
 
