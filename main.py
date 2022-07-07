@@ -28,7 +28,8 @@ class Paintk:
 
         self.text_pen_size = Label(self.bar_menu, text="  Size:  ", fg="white", bg="#3b3b3b").pack(side="left")
 
-        self.pen_size = Spinbox(self.bar_menu, from_=1, to=50).pack(side="left")
+        self.pen_size = Spinbox(self.bar_menu, from_=1, to=50)
+        self.pen_size.pack(side="left")
 
         self.text_brushs = Label(self.bar_menu, text="  Brushs: ", fg="white", bg="#3b3b3b").pack(side="left")
 
@@ -51,7 +52,7 @@ class Paintk:
         x1, y1 = (event.x), (event.y)
         x2, y2 = (event.x), (event.y)
 
-        self.area_draw.create_oval(x1, y1, x2, y2, fill=self.pick_colors, outline=self.pick_colors, width=20)
+        self.area_draw.create_oval(x1, y1, x2, y2, fill=self.pick_colors, outline=self.pick_colors, width=self.pen_size.get())
 
     def select_colors(self, col):
         self.pick_colors = col
