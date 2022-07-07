@@ -1,4 +1,5 @@
 from tkinter import *
+import pyscreenshot
 
 class Paintk:
     def __init__(self):
@@ -43,7 +44,7 @@ class Paintk:
 
         self.text_options = Label(self.bar_menu, text="  Options:  ", fg="white", bg="#3b3b3b").pack(side="left")
 
-        self.button_save = Button(self.bar_menu, image=self.img_save, bd=0).pack(side="left")
+        self.button_save = Button(self.bar_menu, image=self.img_save, bd=0, command=self.save).pack(side="left")
         self.button_new = Button(self.bar_menu, image=self.img_new, bd=0, command=self.clean).pack(side="left")
 
         self.area_draw = Canvas(self.window, height=720, bg="gainsboro")
@@ -86,5 +87,15 @@ class Paintk:
 
     def clean(self):
         self.area_draw.delete("all")
+
+    def save(self):
+
+        x = self.window.winfo_rootx() + self.area_draw.winfo_x()
+        y = self.window.winfo_rooty() + self.area_draw.winfo_y()
+        x1 = self.window.winfo_rootx() + self.area_draw.winfo_width()
+        y1 = self.window.winfo_rooty() + self.area_draw.winfo_height()
+
+        img = pyscreenshot.grab(bbox=(x, y, x1, y1))
+        img.save("image.png", "png")
 
 Paintk()
