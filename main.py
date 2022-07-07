@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter import colorchooser
+
 import pyscreenshot
 
 class Paintk:
@@ -22,6 +24,8 @@ class Paintk:
         self.colors = ("black","#3b3b3b","gray","white","red","green","blue", "purple","orange", "cyan", "yellow","cyan3")
         self.pick_colors = "black"
 
+
+
         self.bar_menu = Frame(self.window, bg='#3b3b3b', height=50)
         self.bar_menu.pack(fill="x")
 
@@ -30,6 +34,12 @@ class Paintk:
 
         for color in self.colors:
             self.button_color = Button(self.bar_menu, bg=color, width=3, height=2, command=lambda col=color:self.select_colors(col)).pack(side="left")
+
+        self.label_colors_choose = Label(self.bar_menu, text="  Color Choose:  ", fg="white", bg="#3b3b3b")
+        self.label_colors_choose.pack(side="left")
+
+        self.color_choose = Button(self.bar_menu, image=self.img_square, bd=0, command=self.selected_color)
+        self.color_choose.pack(side="left")
 
         self.text_pen_size = Label(self.bar_menu, text="  Size:  ", fg="white", bg="#3b3b3b").pack(side="left")
 
@@ -97,5 +107,16 @@ class Paintk:
 
         img = pyscreenshot.grab(bbox=(x, y, x1, y1))
         img.save("image.png", "png")
+
+    def save_canvas(self):
+        self.area_draw.postscript(file="circles.eps")
+        from PIL import Image
+        img = Image.open("circles.eps")
+        img.save("circles.png", "png")
+
+    def selected_color(self):
+        color = colorchooser.askcolor()
+        self.select_color = color[1]
+        self.select_colors(self.select_color)
 
 Paintk()
