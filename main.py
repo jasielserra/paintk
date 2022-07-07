@@ -7,6 +7,10 @@ class Paintk:
         self.window.minsize(width=1280, height=720)
         self.window.resizable(0,0)
 
+        self.oval_brush = False
+        self.line_brush = True
+        self.eraser_brush = False
+
         self.img_line = PhotoImage(file="icons/icons/line.png")
         self.img_oval = PhotoImage(file="icons/icons/oval.png")
         self.img_eraser = PhotoImage(file="icons/icons/eraser.png")
@@ -52,7 +56,15 @@ class Paintk:
         x1, y1 = (event.x), (event.y)
         x2, y2 = (event.x), (event.y)
 
-        self.area_draw.create_oval(x1, y1, x2, y2, fill=self.pick_colors, outline=self.pick_colors, width=self.pen_size.get())
+        if self.oval_brush:
+            self.area_draw.create_oval(x1, y1, x2, y2, fill=self.pick_colors, outline=self.pick_colors, width=self.pen_size.get())
+
+        elif self.line_brush:
+            self.area_draw.create_line(x1 - 10, y1 -10, x2, y2, fill=self.pick_colors, width=self.pen_size.get())
+
+        else:
+            self.area_draw.create_oval(x1, y1, x2, y2, fill=self.pick_colors, outline="gainsboro", width=self.pen_size.get())
+
 
     def select_colors(self, col):
         self.pick_colors = col
