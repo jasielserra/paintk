@@ -44,9 +44,9 @@ class Paintk:
         self.text_options = Label(self.bar_menu, text="  Options:  ", fg="white", bg="#3b3b3b").pack(side="left")
 
         self.button_save = Button(self.bar_menu, image=self.img_save, bd=0).pack(side="left")
-        self.button_new = Button(self.bar_menu, image=self.img_new, bd=0).pack(side="left")
+        self.button_new = Button(self.bar_menu, image=self.img_new, bd=0, command=self.clean).pack(side="left")
 
-        self.area_draw = Canvas(self.window, height=720)
+        self.area_draw = Canvas(self.window, height=720, bg="gainsboro")
         self.area_draw.pack(fill="both")
         self.area_draw.bind("<B1-Motion>", self.draw)
 
@@ -83,5 +83,8 @@ class Paintk:
         self.oval_brush = False
         self.line_brush = False
         self.eraser_brush = True
+
+    def clean(self):
+        self.area_draw.delete("all")
 
 Paintk()
