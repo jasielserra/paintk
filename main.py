@@ -7,8 +7,8 @@ class Paintk:
         self.window.minsize(width=1280, height=720)
         self.window.resizable(0,0)
 
-        self.oval_brush = False
-        self.line_brush = True
+        self.oval_brush = True
+        self.line_brush = False
         self.eraser_brush = False
 
         self.img_line = PhotoImage(file="icons/icons/line.png")
@@ -37,9 +37,9 @@ class Paintk:
 
         self.text_brushs = Label(self.bar_menu, text="  Brushs: ", fg="white", bg="#3b3b3b").pack(side="left")
 
-        self.button_line = Button(self.bar_menu, image=self.img_line, bd=0).pack(side="left")
-        self.button_oval = Button(self.bar_menu, image=self.img_oval, bd=0).pack(side="left")
-        self.button_eraser = Button(self.bar_menu, image=self.img_eraser, bd=0).pack(side="left")
+        self.button_line = Button(self.bar_menu, image=self.img_line, bd=0, command=self.brush_line).pack(side="left")
+        self.button_oval = Button(self.bar_menu, image=self.img_oval, bd=0, command=self.brush_oval).pack(side="left")
+        self.button_eraser = Button(self.bar_menu, image=self.img_eraser, bd=0, command=self.brush_eraser).pack(side="left")
 
         self.text_options = Label(self.bar_menu, text="  Options:  ", fg="white", bg="#3b3b3b").pack(side="left")
 
@@ -63,10 +63,25 @@ class Paintk:
             self.area_draw.create_line(x1 - 10, y1 -10, x2, y2, fill=self.pick_colors, width=self.pen_size.get())
 
         else:
-            self.area_draw.create_oval(x1, y1, x2, y2, fill=self.pick_colors, outline="gainsboro", width=self.pen_size.get())
+            self.area_draw.create_oval(x1, y1, x2, y2, fill="gainsboro", outline="gainsboro", width=self.pen_size.get())
 
 
     def select_colors(self, col):
         self.pick_colors = col
+
+    def brush_oval(self):
+        self.oval_brush = True
+        self.line_brush = False
+        self.eraser_brush = False
+
+    def brush_line(self):
+        self.eraser_brush = False
+        self.line_brush = True
+        self.eraser_brush = False
+
+    def brush_eraser(self):
+        self.oval_brush = False
+        self.line_brush = False
+        self.eraser_brush = True
 
 Paintk()
